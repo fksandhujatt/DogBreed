@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DogBreed>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Dog Breeds</h1>
+<h1><a asp-action="Create" class="glyphicon glyphicon-plus"></a></h1>
+
+<div>
+    <table class="table table-hover table-bordered table-dark" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Breed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubBreed)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Breed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubBreed)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="glyphicon glyphicon-pencil"></a>
+                        @* <a asp-action="Details" asp-route-id="@item.Id">Details</a> | *@
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="glyphicon glyphicon-remove"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+        $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
